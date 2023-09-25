@@ -1,0 +1,72 @@
+
+- Java je platforma (JDK, JRE, programovací jazyk Java)
+- JDK (nutné pro vývoj) a JRE (virtuální stroj)
+- předkem všech tříd je třída Object
+- počítač musí znát cestu k překladači - proměnná PATH
+- předklad do bajtkódu: javac Ahoj.java - přípona java musí být vždy uvedena
+		      javac -encoding UTF8 Ahoj.java; javac -encoding Cp1250 Ahoj.java; - s uvedením kódování souboru
+- při překladu se mohou objevit chyby, které překladač označí
+- spuštění programu: java Ahoj - pokud nechceme využívat systémové proměnná tak: java -classpath C:\Java\1 Ahoj nebo java -classpath .\1\ Ahoj
+- při spuštění hledá JRE metodu main(), která je vstupním bodem do aplikace
+- komentáře - víceřádkové /* */, řádkové // a dokumentační /** */
+- přesměrování výstupu do souboru: java > Ahoj text.txt
+
+Dokumentace
+===========
+- @param
+- k formátování lze použít HTML tagy (b, i, atd.)
+- vlastní dokumetace: javadoc Ahoj.java - vygeneruje dokumentaci v HTML na základě dokumentační komentářů
+                      javadoc Ahoj.java -encoding Cp1250
+					  javadoc Ahoj.java -version -author  (v případěq použití tagů @author a @version)
+					  javadoc Ahoj.java -version -author  -d .\dokumentace (generování do konkrétního adresáře)
+
+Archivy jar					 
+===========
+- zipy (test.jar), kam se navíc přidává manifest, soubor s dodatečnými informacemi kde lze definovat třídu, která obsahuje metodu main
+
+- vytoření jar file: jar -cfv Hoja.jar Ahoj.class (c - create archive, f - výstup do souboru file, v - verbose - úplný textový výstup)
+                     jar -c -v -f Hoja.jar Ahoj.class  
+- spuštění programu z archivu
+					 java -classpath Hoja.jar Ahoj
+- vytvoření manifestu (spustitelný jar)
+	- doplním řádek do souboru s manifestem0 manifest.mf 
+		Main-Class: Ahoj
+	jar -c -f Hoja.jar -v -m manifest.mf Ahoj.class 
+- spuštění spustitelného jar. Parametr -jar předepisuje spuštění programu z archivu
+    java -jar Hoja.jar					  
+					 
+Balíky
+======
+- balík je skupina tříd
+- skupina tříd je umístěná v adresáři
+- na začátku soubrou s třídou musí být deklarace "package nazev_baliku";
+- překlad: javac pozdrav/Ahoj.java
+- spuštění - spouští se z adresáře projektu, nikoliv z adresáře, kde leží soubor .class
+	java pozdrav.Ahoj
+- při použití v archivu jar je potřeba do manifestu přidat název třídy včetně balíku: "Main-Class: pozdrav.Ahoj"
+	jar -c -f Hoja.jar -m ../manifest.mf .
+	jar -c -f Hoja.jar -m ../manifest.mf ./pozdrav
+
+Dva balíky
+==========
+- balík ahoj a program
+- překlad jedné třídy, která volá metodu jiné třídy, zajistí překlad i té volané třídy: javac -Xlint program/Program.java
+- vytvoření jar souboru
+	jar -c -f Hoja.jar -m ../manifest.mf .
+- spuštění
+	java -cp .;Pozdrav.jar program.Program   (-cp znamená totéž co classpath)
+	java -jar Hoja.jar
+
+Moduly
+======
+- modul je v adresáři, který se shoduje s názvem modulu
+- v adresáři modulu je soubor  module-info.java, který obsahuje deklaraci a podadresáře obsahující jednotlivé balíky:
+	module nazev_modulu
+	{
+	    exports balik;
+	}
+- překlad modulu z adresáře projektu - je tam adresář modul a v něm adresář program
+	javac --module-source-path . --module modul -d výstup
+- spuštění programu (parametr -p udává cestu ke kořenovému adresáři modulu; parametr -m jméno modulu a za lomítkem jméno třídy obsahující metodu main()
+	java -p ./výstup/modul -m modul/program.Program;
+

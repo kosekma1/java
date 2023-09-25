@@ -1,0 +1,4 @@
+module modul
+{
+   exports program;
+}

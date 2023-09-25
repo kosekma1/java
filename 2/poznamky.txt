@@ -1,0 +1,14 @@
+- var výsledek = sčítanec1 + sčítanec2 (typ proměnné výsledek odvodí z typu inicializátoru)
+- zřetězení řetězců: "text1" + "text2"
+- použití metody printf()
+	System.out.printf("Součet čísel %d + % d je %d", sčítanec1, sčítanec2, výsledek);
+	- %d se označuje jako specifikace konverze
+- pro načtení hodnoty využití java.util.Scanner vstup = new java.util.Scanner(System.in);
+- pogram čte ze standardního vstupu, to znamená, že vstup a výstup lze přesměrovat. Soubor data.dta obsahuje dva řádky s čísly
+	java počítání/Součet < data.dta
+- n-- a n++ (inkrementace a dekrementace)
+- cyklus while ()
+- místo magických hodnota používat konstanty: final static KONSTANTA1 = 100;
+- podmínky if else; if(x<1 || x >50) - spojení dvou podmínek
+- výjimky - throw new IllegalArgumentException("text");
+		  - pokud je neošetřená musí jí vyhazovat i metoda, která ji volá

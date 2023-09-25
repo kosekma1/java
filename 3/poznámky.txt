@@ -1,0 +1,12 @@
+- pole java.lang.ArrayList - lze použít generickou třídu pro omezení pro ukládání konkrétního typu prvnků
+	java.lang.ArrayList<String> pole = new java.lang.ArrayList<String>();
+- datový typ String - nelze měnit
+	- trim() - odstraní počáteční a koncové mezery
+	- length() - délka řetězce
+	- znaky jsou indexované od 0, poslední znak má index length()-1
+	- charAt(i) - zjistím znak na určité pozici
+	- equals() - porovnává dva řetězce znak po znaku - např. detekce prázdné řádky if(řádka.equals("")) { return;} 
+		- poku bychom použili pro porovnání ==, tak by se porovnávali odkazy (vlastně adresy řetězců v paměti)
+- datový typ StringBuffer - pro vytvoření zankového řetězce, který lze měnit
+- do programu předávám jeden parametru a vstup i výstup přesměrováváme
+	java slova.Program Cp1250 < vstup.txt > vystup.txt
